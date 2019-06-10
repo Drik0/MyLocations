@@ -20,6 +20,8 @@ class CurrentLocationViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     var location: CLLocation?
+    var updatingLocations = false
+    var lastLocationError: Error?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +78,31 @@ class CurrentLocationViewController: UIViewController {
             longitudeLabel.text = ""
             addressLabel.text = ""
             tagButton.isHidden = true
-            messageLabel.text = "Tap 'Get My Location' to Start"
+            
+            let statusMessage: String
+            if let error = lastLocationError as NSError? {
+                if error.domain == kCLErrorDomain &&
+                   error.code == CLError.denied.rawValue {
+                        statusMessage = "Location Services Disabled"
+                } else {
+                    statusMessage = "Error Getting Location "
+                }
+            } else if !CLLocationManager.locationServicesEnabled() {
+                statusMessage = "Location Services Disabled"
+            } else if updatingLocations {
+                statusMessage = "Searching..."
+            } else {
+                statusMessage = "Tap 'Get My Location' to Start"
+            }
+            messageLabel.text = statusMessage
+        }
+    }
+    
+    func stopLocationManager() {
+        if updatingLocations {
+            locationManager.stopUpdatingLocation()
+            locationManager.delegate = nil
+            updatingLocations = false
         }
     }
 
@@ -85,6 +111,14 @@ class CurrentLocationViewController: UIViewController {
 extension CurrentLocationViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed with error \(error.localizedDescription)")
+        
+        if (error as NSError).code == CLError.locationUnknown.rawValue {
+            return
+        }
+        
+        lastLocationError = error
+        stopLocationManager()
+        updateLabels()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
