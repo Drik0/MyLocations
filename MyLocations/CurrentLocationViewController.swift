@@ -13,16 +13,18 @@ class CurrentLocationViewController: UIViewController {
 
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var latitudeLabel: UILabel!
-    @IBOutlet weak var LongitudeLabel: UILabel!
+    @IBOutlet weak var longitudeLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var getButton: UIButton!
     
     let locationManager = CLLocationManager()
+    var location: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        updateLabels()
     }
 
     // MARK: - Actions
@@ -61,6 +63,22 @@ class CurrentLocationViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    func updateLabels() {
+        if let location = location {
+            latitudeLabel.text = String(format: "%.8f", location.coordinate.latitude)
+            longitudeLabel.text = String(format: "%.8f", location.coordinate.longitude)
+            
+            tagButton.isHidden = false
+            messageLabel.text = ""
+        } else {
+            latitudeLabel.text = ""
+            longitudeLabel.text = ""
+            addressLabel.text = ""
+            tagButton.isHidden = true
+            messageLabel.text = "Tap 'Get My Location' to Start"
+        }
+    }
 
 }
 
@@ -72,6 +90,9 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last!
         print("New location: \(newLocation)")
+        
+        location = newLocation
+        updateLabels()
     }
 }
 

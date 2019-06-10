@@ -98,10 +98,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Tag" id="xxu-MS-LhC"/>
                     <connections>
-                        <outlet property="LongitudeLabel" destination="72f-RU-3EF" id="F98-Kp-TlO"/>
                         <outlet property="addressLabel" destination="eSx-1q-YTX" id="LK3-Cu-gEg"/>
                         <outlet property="getButton" destination="vzL-br-fHp" id="CaN-aW-A0R"/>
                         <outlet property="latitudeLabel" destination="cob-o9-UtJ" id="hDr-0f-aZS"/>
+                        <outlet property="longitudeLabel" destination="72f-RU-3EF" id="F98-Kp-TlO"/>
                         <outlet property="messageLabel" destination="LEi-cz-Oth" id="OFG-bl-dDm"/>
                         <outlet property="tagButton" destination="GLx-rD-pcc" id="TZZ-fm-Ldx"/>
                     </connections>
