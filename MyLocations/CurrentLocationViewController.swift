@@ -174,13 +174,16 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
                 performingReverseGeocoding = true
                 
                 geocoder.reverseGeocodeLocation(newLocation) { (placemarks, error) in
-                    if let error = error {
-                        print("Reverse geocoding error: \(error.localizedDescription)")
-                        return
+                    self.lastGeocodingError = error
+                    
+                    if error == nil, let p = placemarks, !p.isEmpty {
+                        self.placemark = p.last!
+                    } else {
+                        self.placemark = nil
                     }
-                    if let places = placemarks {
-                        print("Found places: \(places)")
-                    }
+                    
+                    self.performingReverseGeocoding = false
+                    self.updateLabels()
                 }
             }
         }
