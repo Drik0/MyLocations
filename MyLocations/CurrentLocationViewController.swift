@@ -43,9 +43,14 @@ class CurrentLocationViewController: UIViewController {
             return
         }
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.startUpdatingLocation()
+        if updatingLocations {
+            stopLocationManager()
+        } else {
+            location = nil
+            lastLocationError = nil
+            startLocationManager()
+        }
+        updateLabels()
     }
     
     // MARK: - Helper Methods
@@ -96,6 +101,16 @@ class CurrentLocationViewController: UIViewController {
             }
             messageLabel.text = statusMessage
         }
+        configureGetButton()
+    }
+    
+    func startLocationManager() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+            updatingLocations = true
+        }
     }
     
     func stopLocationManager() {
@@ -103,6 +118,14 @@ class CurrentLocationViewController: UIViewController {
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
             updatingLocations = false
+        }
+    }
+    
+    func configureGetButton() {
+        if updatingLocations {
+            getButton.setTitle("Stop", for: .normal)
+        } else {
+            getButton.setTitle("Get My Location", for: .normal)
         }
     }
 
@@ -125,8 +148,22 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
         let newLocation = locations.last!
         print("New location: \(newLocation)")
         
-        location = newLocation
-        updateLabels()
+        if newLocation.timestamp.timeIntervalSinceNow < -5 {
+            return
+        }
+        if newLocation.horizontalAccuracy < 0 {
+            return
+        }
+        if location == nil || location!.horizontalAccuracy > newLocation.horizontalAccuracy {
+            lastLocationError = nil
+            location = newLocation
+            
+            if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
+                print("=======DONE==========")
+                stopLocationManager()
+            }
+            updateLabels()
+        }
     }
 }
 
