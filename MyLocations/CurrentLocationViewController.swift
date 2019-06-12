@@ -24,6 +24,7 @@ class CurrentLocationViewController: UIViewController {
     let geocoder = CLGeocoder()
     var placemark: CLPlacemark?
     var lastGeocodingError: Error?
+    var timer: Timer?
     var updatingLocations = false
     var performingReverseGeocoding = false
     
@@ -125,6 +126,8 @@ class CurrentLocationViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
             updatingLocations = true
+            
+            timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(didTimeOut), userInfo: nil, repeats: false)
         }
     }
     
@@ -133,6 +136,10 @@ class CurrentLocationViewController: UIViewController {
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
             updatingLocations = false
+            
+            if let timer = timer {
+                timer.invalidate()
+            }
         }
     }
     
@@ -165,12 +172,22 @@ class CurrentLocationViewController: UIViewController {
         
         return line1 + "\n" + line2
     }
+    
+    @objc func didTimeOut() {
+        print("=======Time out=======")
+        
+        if location == nil {
+            stopLocationManager()
+            lastLocationError = NSError(domain: "MyLocationsErrorDomain", code: 1, userInfo: nil)
+            updateLabels()
+        }
+    }
 
 }
 
 extension CurrentLocationViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Failed with error \(error.localizedDescription)")
+        print("=======Failed with error \(error.localizedDescription)=======")
         
         if (error as NSError).code == CLError.locationUnknown.rawValue {
             return
@@ -183,7 +200,7 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last!
-        print("New location: \(newLocation)")
+        print("=======New location: \(newLocation)=======")
         
         if newLocation.timestamp.timeIntervalSinceNow < -5 {
             return
@@ -203,7 +220,7 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
             location = newLocation
             
             if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
-                print("=======DONE==========")
+                print("=======DONE=======")
                 stopLocationManager()
                 
                 if distance > 0 {
@@ -213,7 +230,7 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
             updateLabels()
             
             if !performingReverseGeocoding {
-                print("Going to Geocode")
+                print("=======Going to Geocode=======")
                 
                 performingReverseGeocoding = true
                 
@@ -233,7 +250,7 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
                 let timeInterval = newLocation.timestamp.timeIntervalSince(location!.timestamp)
                 
                 if timeInterval > 10 {
-                    print("Force Done!")
+                    print("=======Force Done!=======")
                     stopLocationManager()
                     updateLabels()
                 }
