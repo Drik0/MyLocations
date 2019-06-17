@@ -13,6 +13,7 @@
 		B1302B5E22AE8816005AF5DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1302B5C22AE8816005AF5DE /* Main.storyboard */; };
 		B1302B6022AE8817005AF5DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1302B5F22AE8817005AF5DE /* Assets.xcassets */; };
 		B1302B6322AE8817005AF5DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1302B6122AE8817005AF5DE /* LaunchScreen.storyboard */; };
+		B1317AB322B7A8CF0082D247 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1317AB222B7A8CF0082D247 /* Functions.swift */; };
 		B167A37922B259FB006F8246 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167A37822B259FB006F8246 /* LocationDetailsViewController.swift */; };
 		B167A37B22B28BAC006F8246 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167A37A22B28BAC006F8246 /* CategoryPickerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		B1302B5F22AE8817005AF5DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1302B6222AE8817005AF5DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1302B6422AE8817005AF5DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1317AB222B7A8CF0082D247 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		B167A37822B259FB006F8246 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		B167A37A22B28BAC006F8246 /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +71,7 @@
 				B1302B6122AE8817005AF5DE /* LaunchScreen.storyboard */,
 				B1302B6422AE8817005AF5DE /* Info.plist */,
 				B12B2E0622B2CAFE001F668D /* HudView.swift */,
+				B1317AB222B7A8CF0082D247 /* Functions.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 				B167A37922B259FB006F8246 /* LocationDetailsViewController.swift in Sources */,
 				B1302B5B22AE8816005AF5DE /* CurrentLocationViewController.swift in Sources */,
 				B1302B5922AE8816005AF5DE /* AppDelegate.swift in Sources */,
+				B1317AB322B7A8CF0082D247 /* Functions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

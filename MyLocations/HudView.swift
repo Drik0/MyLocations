@@ -77,4 +77,15 @@ class HudView: UIView {
             }, completion: nil)
         }
     }
+    
+    func hide() {
+        superview?.isUserInteractionEnabled = true
+        
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: [], animations: {
+            self.alpha = 0
+            self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        }) { (success) in
+            self.removeFromSuperview()
+        }
+    }
 }
