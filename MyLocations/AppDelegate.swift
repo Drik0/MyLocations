@@ -29,7 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let tabController = window!.rootViewController as! UITabBarController
+        
+        if let tabViewControllers = tabController.viewControllers {
+            let navController = tabViewControllers[0] as!UINavigationController
+            let controller = navController.viewControllers.first as!CurrentLocationViewController
+            controller.managedObjectContext = managedObjectContext
+        }
+        
+        print(applicationDocumentsDirectory)
+        
         return true
     }
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class CurrentLocationViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class CurrentLocationViewController: UIViewController {
     @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var getButton: UIButton!
     
+    var managedObjectContext: NSManagedObjectContext!
     let locationManager = CLLocationManager()
     var location: CLLocation?
     var lastLocationError: Error?
@@ -194,6 +196,7 @@ class CurrentLocationViewController: UIViewController {
             let controller = segue.destination as! LocationDetailsViewController
             controller.coordinate = location!.coordinate
             controller.placemark = placemark
+            controller.managedObjectContext = managedObjectContext
         }
     }
 
@@ -252,7 +255,7 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
                     self.lastGeocodingError = error
                     
                     if error == nil, let p = placemarks, !p.isEmpty {
-                        self.placemark = p.last!
+                        //self.placemark = p.last!
                     } else {
                         self.placemark = nil
                     }
