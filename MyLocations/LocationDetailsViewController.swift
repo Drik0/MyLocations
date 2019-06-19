@@ -90,7 +90,7 @@ class LocationDetailsViewController: UITableViewController {
                 })
             }
         } catch {
-            fatalError("Error: \(error)")
+            fatalCoreDataError(error)
         }
     }
     

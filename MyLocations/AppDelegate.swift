@@ -40,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(applicationDocumentsDirectory)
         
+        listenForFatalCoreDataNotifications()
+        
         return true
     }
 
@@ -65,6 +67,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // Helper Methods
+    func listenForFatalCoreDataNotifications() {
+        NotificationCenter.default.addObserver(
+            forName: CoreDataSaveFailedNotification,
+            object: nil, queue: .main) { (notification) in
+                let message =
+                            """
+                            There was a fatal error in the app and it cannot continue.
+                            
+                            Press OK to terminate the app. Sorry for the inconvenience.
+                            """
+                let alert = UIAlertController(title: "Internal Error", message: message, preferredStyle: .alert)
+                
+                let action = UIAlertAction(
+                    title: "OK", style: .default, handler: { _ in
+                        
+                        let exception = NSException(
+                            name: NSExceptionName.internalInconsistencyException,
+                            reason: "Fatal Core Data Error", userInfo: nil)
+                        
+                        exception.raise()
+                })
+                
+                alert.addAction(action)
+                
+                let tabController = self.window!.rootViewController!
+                tabController.present(alert, animated: true, completion: nil)
+        }
+    }
 
 }
 
