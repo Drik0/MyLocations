@@ -157,6 +157,7 @@
                                 <connections>
                                     <outlet property="addressLabel" destination="L6x-6K-fqF" id="VUS-Iw-rmy"/>
                                     <outlet property="descriptionLabel" destination="fzx-9S-ga1" id="aK2-oF-dGL"/>
+                                    <segue destination="YOy-Gi-oXx" kind="show" identifier="editLocation" id="ffA-80-IUu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -490,4 +491,7 @@
             <point key="canvasLocation" x="1046.25" y="111.97183098591549"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ffA-80-IUu"/>
+    </inferredMetricsTieBreakers>
 </document>
