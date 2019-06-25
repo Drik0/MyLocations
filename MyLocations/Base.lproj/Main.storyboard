@@ -227,6 +227,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="5VL-BD-FfB" id="k1V-To-Aec"/>
+                        <segue destination="YOy-Gi-oXx" kind="show" identifier="EditLocation" id="QCs-XK-rXH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LWB-Ai-kv9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -556,6 +557,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ffA-80-IUu"/>
+        <segue reference="QCs-XK-rXH"/>
     </inferredMetricsTieBreakers>
 </document>
