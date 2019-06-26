@@ -36,6 +36,7 @@ class LocationDetailsViewController: UITableViewController {
     var placemark: CLPlacemark?
     var categoryName = "No Category"
     var descriptionText = ""
+    var obserser: Any!
     
     var locationToEdit: Location? {
         didSet {
@@ -81,12 +82,19 @@ class LocationDetailsViewController: UITableViewController {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         gestureRecognizer.cancelsTouchesInView = false
         tableView.addGestureRecognizer(gestureRecognizer)
+        
+        listenToBackgroundNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.isNavigationBarHidden = false
+    }
+    
+    deinit {
+        print("====Deinit \(self)")
+        NotificationCenter.default.removeObserver(obserser)
     }
     
     @IBAction func categoryPickerDidPickCategory(_ segue: UIStoryboardSegue) {
@@ -184,6 +192,18 @@ class LocationDetailsViewController: UITableViewController {
         addPhotoLabel.text = ""
         imageHeight.constant = 260
         tableView.reloadData()
+    }
+    
+    func listenToBackgroundNotification() {
+        obserser = NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: .main) { [weak self] _ in
+            
+            if let weakSelf = self {
+                if weakSelf.presentedViewController != nil {
+                    weakSelf.dismiss(animated: false, completion: nil)
+                }
+                weakSelf.descriptionTextView.resignFirstResponder()
+            }
+        }
     }
     
     @objc func hideKeyboard(_ gestureRecognizer: UIGestureRecognizer) {
