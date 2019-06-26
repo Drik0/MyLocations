@@ -306,15 +306,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBe-0j-NTZ">
-                                                    <rect key="frame" x="16" y="11.5" width="81" height="21"/>
+                                                    <rect key="frame" x="16" y="11.5" width="80.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uOt-Vv-GuL">
+                                                    <rect key="frame" x="96.5" y="11" width="181.5" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="1ej-rb-B47"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="LBe-0j-NTZ" firstAttribute="centerY" secondItem="vdP-UU-yT8" secondAttribute="centerY" id="Bne-1D-ZU8"/>
+                                                <constraint firstItem="uOt-Vv-GuL" firstAttribute="trailing" secondItem="vdP-UU-yT8" secondAttribute="trailingMargin" id="GYa-ym-dSK"/>
                                                 <constraint firstItem="LBe-0j-NTZ" firstAttribute="leading" secondItem="vdP-UU-yT8" secondAttribute="leadingMargin" id="J3K-pf-Qpn"/>
+                                                <constraint firstItem="uOt-Vv-GuL" firstAttribute="leading" secondItem="LBe-0j-NTZ" secondAttribute="trailing" id="KVo-DR-fC0"/>
+                                                <constraint firstItem="uOt-Vv-GuL" firstAttribute="top" secondItem="vdP-UU-yT8" secondAttribute="topMargin" id="d52-fy-edE"/>
+                                                <constraint firstItem="LBe-0j-NTZ" firstAttribute="centerY" secondItem="vdP-UU-yT8" secondAttribute="centerY" id="jUb-Eh-Xgo"/>
+                                                <constraint firstItem="uOt-Vv-GuL" firstAttribute="bottom" secondItem="vdP-UU-yT8" secondAttribute="bottomMargin" id="xo8-FY-0AX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -444,10 +454,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addPhotoLabel" destination="LBe-0j-NTZ" id="MIb-GC-li8"/>
                         <outlet property="addressLabel" destination="Eew-hh-Ch4" id="d5k-2U-X2Z"/>
                         <outlet property="categoryLabel" destination="Uqd-IM-imW" id="nLe-MI-qfv"/>
                         <outlet property="dateLabel" destination="yPX-r8-nF2" id="e6h-Xg-i9x"/>
                         <outlet property="descriptionTextView" destination="a63-gr-jYu" id="dUA-v4-HRN"/>
+                        <outlet property="imageHeight" destination="1ej-rb-B47" id="gxy-9i-7te"/>
+                        <outlet property="imageView" destination="uOt-Vv-GuL" id="DT9-Gy-Ysc"/>
                         <outlet property="latitudeLabel" destination="pHq-Ta-QWY" id="Zd4-om-3sC"/>
                         <outlet property="longitudeLabel" destination="Vn9-BH-s7Z" id="LFi-mf-5pb"/>
                     </connections>

@@ -26,6 +26,9 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var longitudeLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var addPhotoLabel: UILabel!
+    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
     var date = Date()
     var managedObjectContext: NSManagedObjectContext!
@@ -33,6 +36,7 @@ class LocationDetailsViewController: UITableViewController {
     var placemark: CLPlacemark?
     var categoryName = "No Category"
     var descriptionText = ""
+    
     var locationToEdit: Location? {
         didSet {
             if let location = locationToEdit {
@@ -45,10 +49,18 @@ class LocationDetailsViewController: UITableViewController {
         }
     }
     
+    var image: UIImage? {
+        didSet {
+            if let image = image {
+                self.show(image: image)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let location = locationToEdit {
+        if let _ = locationToEdit {
             title = "Edit Location"
         }
 
@@ -166,6 +178,14 @@ class LocationDetailsViewController: UITableViewController {
         return dateFormatter.string(from: date)
     }
     
+    func show(image: UIImage) {
+        imageView.image = image
+        imageView.isHidden = false
+        addPhotoLabel.text = ""
+        imageHeight.constant = 260
+        tableView.reloadData()
+    }
+    
     @objc func hideKeyboard(_ gestureRecognizer: UIGestureRecognizer) {
         let point = gestureRecognizer.location(in: tableView)
         let indexPath = tableView.indexPathForRow(at: point)
@@ -226,6 +246,9 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+        
         dismiss(animated: true, completion: nil)
     }
     
