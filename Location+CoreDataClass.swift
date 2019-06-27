@@ -58,8 +58,10 @@ public class Location: NSManagedObject, MKAnnotation {
     class func nextPhotoID() -> Int {
         let userDefaults = UserDefaults.standard
         let currentID = userDefaults.integer(forKey: "PhotoID") + 1
+        print("========= Current ID: \(currentID)")
         userDefaults.set(currentID, forKey: "PhotoID")
         userDefaults.synchronize()
+        print("========= New Current ID: \(currentID)")
         return currentID
     }
 

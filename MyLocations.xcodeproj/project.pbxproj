@@ -23,6 +23,7 @@
 		B1850B3B22B80B30006D8AA5 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1850B3922B80B30006D8AA5 /* Location+CoreDataClass.swift */; };
 		B1850B3C22B80B30006D8AA5 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1850B3A22B80B30006D8AA5 /* Location+CoreDataProperties.swift */; };
 		B1B985B522C4C9290037E948 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B985B422C4C9290037E948 /* UIImage+Resize.swift */; };
+		B1E124DA22C4EB3600C4427C /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E124D922C4EB3600C4427C /* String+AddText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		B1850B3922B80B30006D8AA5 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1850B3A22B80B30006D8AA5 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1B985B422C4C9290037E948 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		B1E124D922C4EB3600C4427C /* String+AddText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				B1317AB222B7A8CF0082D247 /* Functions.swift */,
 				B1850B3622B806B7006D8AA5 /* DataModel.xcdatamodeld */,
 				B1B985B422C4C9290037E948 /* UIImage+Resize.swift */,
+				B1E124D922C4EB3600C4427C /* String+AddText.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				B1850B3B22B80B30006D8AA5 /* Location+CoreDataClass.swift in Sources */,
 				B17F165D22BBFFD3008517C6 /* LocationCell.swift in Sources */,
 				B13B69C322C1394F0066ACD0 /* MapViewController.swift in Sources */,
+				B1E124DA22C4EB3600C4427C /* String+AddText.swift in Sources */,
 				B1850B3C22B80B30006D8AA5 /* Location+CoreDataProperties.swift in Sources */,
 				B1302B5B22AE8816005AF5DE /* CurrentLocationViewController.swift in Sources */,
 				B1302B5922AE8816005AF5DE /* AppDelegate.swift in Sources */,
