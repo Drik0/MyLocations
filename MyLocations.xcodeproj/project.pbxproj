@@ -22,6 +22,7 @@
 		B1850B3822B806B7006D8AA5 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B1850B3622B806B7006D8AA5 /* DataModel.xcdatamodeld */; };
 		B1850B3B22B80B30006D8AA5 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1850B3922B80B30006D8AA5 /* Location+CoreDataClass.swift */; };
 		B1850B3C22B80B30006D8AA5 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1850B3A22B80B30006D8AA5 /* Location+CoreDataProperties.swift */; };
+		B1B985B522C4C9290037E948 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B985B422C4C9290037E948 /* UIImage+Resize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		B1850B3722B806B7006D8AA5 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		B1850B3922B80B30006D8AA5 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1850B3A22B80B30006D8AA5 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B1B985B422C4C9290037E948 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				B1302B6422AE8817005AF5DE /* Info.plist */,
 				B1317AB222B7A8CF0082D247 /* Functions.swift */,
 				B1850B3622B806B7006D8AA5 /* DataModel.xcdatamodeld */,
+				B1B985B422C4C9290037E948 /* UIImage+Resize.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				B12B2E0722B2CAFE001F668D /* HudView.swift in Sources */,
 				B167A37922B259FB006F8246 /* LocationDetailsViewController.swift in Sources */,
 				B1850B3822B806B7006D8AA5 /* DataModel.xcdatamodeld in Sources */,
+				B1B985B522C4C9290037E948 /* UIImage+Resize.swift in Sources */,
 				B1850B3B22B80B30006D8AA5 /* Location+CoreDataClass.swift in Sources */,
 				B17F165D22BBFFD3008517C6 /* LocationCell.swift in Sources */,
 				B13B69C322C1394F0066ACD0 /* MapViewController.swift in Sources */,

@@ -50,7 +50,13 @@ class LocationDetailsViewController: UITableViewController {
         }
     }
     
-    var image: UIImage?
+    var image: UIImage? {
+        didSet {
+            if let image = image {
+                show(image: image)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -282,10 +288,6 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-        
-        if let theImage = image {
-            show(image: theImage)
-        }
         
         dismiss(animated: true, completion: nil)
     }
