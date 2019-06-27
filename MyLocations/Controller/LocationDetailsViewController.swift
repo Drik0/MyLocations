@@ -50,19 +50,19 @@ class LocationDetailsViewController: UITableViewController {
         }
     }
     
-    var image: UIImage? {
-        didSet {
-            if let image = image {
-                self.show(image: image)
-            }
-        }
-    }
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let _ = locationToEdit {
+        if let location = locationToEdit {
             title = "Edit Location"
+            
+            if location.hasPhoto {
+                if let theImage = location.photoImage {
+                    show(image: theImage)
+                }
+            }
         }
 
         descriptionTextView.text = descriptionText
@@ -113,6 +113,7 @@ class LocationDetailsViewController: UITableViewController {
         } else {
             hudView.text = "Tagged"
             location = Location(context: managedObjectContext)
+            location.photoID = nil
         }
         
         location.locationDescription = descriptionTextView.text
@@ -121,6 +122,19 @@ class LocationDetailsViewController: UITableViewController {
         location.longitude = coordinate.longitude
         location.date = date
         location.placemark = placemark
+        
+        if let image = image {
+            if !location.hasPhoto {
+                location.photoID = Location.nextPhotoID() as NSNumber
+            }
+            if let data = image.jpegData(compressionQuality: 0.5) {
+                do {
+                    try data.write(to: location.photoURL, options: .atomic)
+                } catch {
+                    print("Error writing file: \(error)")
+                }
+            }
+        }
         
         do {
             try managedObjectContext.save()
@@ -268,6 +282,10 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+        
+        if let theImage = image {
+            show(image: theImage)
+        }
         
         dismiss(animated: true, completion: nil)
     }
