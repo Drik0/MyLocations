@@ -178,6 +178,12 @@ class LocationDetailsViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let selection = UIView(frame: CGRect.zero)
+        selection.backgroundColor = UIColor(white: 1.0, alpha: 0.3)
+        cell.selectedBackgroundView = selection
+    }
+    
     func string(from placemark: CLPlacemark) -> String {
         var line = ""
         
@@ -238,18 +244,20 @@ class LocationDetailsViewController: UITableViewController {
 extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func takePhotoWithCamera() {
-        let imagePicker = UIImagePickerController()
+        let imagePicker = MyImagePicker()
         imagePicker.sourceType = .camera
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
+        imagePicker.view.tintColor = view.tintColor
         present(imagePicker, animated: true, completion: nil)
     }
     
     func chooseFromPhotoLibrary() {
-        let imagePicker = UIImagePickerController()
+        let imagePicker = MyImagePicker()
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
+        imagePicker.view.tintColor = view.tintColor
         present(imagePicker, animated: true, completion: nil)
     }
     

@@ -125,6 +125,7 @@ extension MapViewController: MKMapViewDelegate {
             pinView.isEnabled = true
             pinView.canShowCallout = true
             pinView.animatesDrop = false
+            pinView.tintColor = UIColor(white: 0.0, alpha: 0.5)
             pinView.pinTintColor = UIColor(red: 0.32, green: 0.82, blue: 0.4, alpha: 1)
             
             let rightButton = UIButton(type: .detailDisclosure)

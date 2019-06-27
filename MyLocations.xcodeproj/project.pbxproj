@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B116E29522C51D99009EF3A8 /* MyTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B116E29422C51D99009EF3A8 /* MyTabController.swift */; };
+		B116E29722C5221E009EF3A8 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B116E29622C5221E009EF3A8 /* ImagePickerController.swift */; };
 		B11C954822BAA5650059A18B /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11C954722BAA5650059A18B /* LocationsViewController.swift */; };
 		B12B2E0722B2CAFE001F668D /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12B2E0622B2CAFE001F668D /* HudView.swift */; };
 		B1302B5922AE8816005AF5DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1302B5822AE8816005AF5DE /* AppDelegate.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B116E29422C51D99009EF3A8 /* MyTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabController.swift; sourceTree = "<group>"; };
+		B116E29622C5221E009EF3A8 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		B11C954722BAA5650059A18B /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		B12B2E0622B2CAFE001F668D /* HudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
 		B1302B5522AE8816005AF5DE /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +114,8 @@
 		B13B69C522C139980066ACD0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B116E29422C51D99009EF3A8 /* MyTabController.swift */,
+				B116E29622C5221E009EF3A8 /* ImagePickerController.swift */,
 				B17F165C22BBFFD2008517C6 /* LocationCell.swift */,
 				B12B2E0622B2CAFE001F668D /* HudView.swift */,
 			);
@@ -198,7 +204,9 @@
 				B13B69C322C1394F0066ACD0 /* MapViewController.swift in Sources */,
 				B1E124DA22C4EB3600C4427C /* String+AddText.swift in Sources */,
 				B1850B3C22B80B30006D8AA5 /* Location+CoreDataProperties.swift in Sources */,
+				B116E29722C5221E009EF3A8 /* ImagePickerController.swift in Sources */,
 				B1302B5B22AE8816005AF5DE /* CurrentLocationViewController.swift in Sources */,
+				B116E29522C51D99009EF3A8 /* MyTabController.swift in Sources */,
 				B1302B5922AE8816005AF5DE /* AppDelegate.swift in Sources */,
 				B1317AB322B7A8CF0082D247 /* Functions.swift in Sources */,
 			);
