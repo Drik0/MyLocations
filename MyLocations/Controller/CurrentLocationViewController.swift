@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import CoreData
+import AudioToolbox
 
 class CurrentLocationViewController: UIViewController {
 
@@ -33,6 +34,7 @@ class CurrentLocationViewController: UIViewController {
     var updatingLocations = false
     var performingReverseGeocoding = false
     var logoVisible = false
+    var soundID: SystemSoundID = 0
     
     lazy var logoButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -54,6 +56,7 @@ class CurrentLocationViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.isNavigationBarHidden = true
+        loadSoundEffect("Sound.caf")
     }
 
     // MARK: - Actions
@@ -260,6 +263,26 @@ class CurrentLocationViewController: UIViewController {
         return line1
     }
     
+    func loadSoundEffect(_ name: String) {
+        if let path = Bundle.main.path(forResource: name, ofType: nil) {
+            let fileURL = URL(fileURLWithPath: path, isDirectory: false)
+            let error = AudioServicesCreateSystemSoundID(fileURL as CFURL, &soundID)
+            
+            if error != kAudioServicesNoError {
+                print("Error Code \(error) loading sound: \(path)")
+            }
+        }
+    }
+    
+    func unloadSoundEffect() {
+        AudioServicesDisposeSystemSoundID(soundID)
+        soundID = 0
+    }
+    
+    func playSoundEffect() {
+        AudioServicesPlaySystemSound(soundID)
+    }
+    
     @objc func didTimeOut() {
         print("=======Time out=======")
         
@@ -334,6 +357,10 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
                     self.lastGeocodingError = error
                     
                     if error == nil, let p = placemarks, !p.isEmpty {
+                        if self.placemark == nil {
+                            print("FIRST TIME!")
+                            self.playSoundEffect()
+                        }
                         self.placemark = p.last!
                     } else {
                         self.placemark = nil
